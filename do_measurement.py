@@ -4,13 +4,13 @@ import numpy as np
 from simple_daq import Device
 
 
-dev = Device('/dev/ttyACM0')
+dev = Device('COM4')
 dev.initialize()
 sleep(1)
 out_port = 0  # Output Port
 in_port = 0  # Input Port
 
-voltages = np.linspace(0,4025,100)  # Voltages to sweep
+voltages = int(np.linspace(0,4095,100))  # integer Voltages to sweep
 data = np.zeros((100))  # Where to store data
 
 for i in range(len(voltages)):
