@@ -65,7 +65,7 @@ class Device:
 
 
 if __name__ == '__main__':
-    dev = Device('/dev/ttyACM0')
+    dev = Device('/dev/cu.usbmodem1411')
     dev.initialize()
     sleep(1)
     print(dev.idn())
