@@ -2,7 +2,8 @@
 """
 import serial
 from time import sleep, time
-from general_functions import current_time as time		#this is bad to overwrite the previous time!
+from general_functions import current_time as time_ms # use time in ms
+
 
 
 class Device:
@@ -52,11 +53,7 @@ class Device:
             line += new_char
             if new_char == line_termination:
                 break
-
-            if time()-start_time > self.DEFAULTS['timeout']:
-                raise Exception('Device timed out')
-
-            if time()-start_time > 1000*self.DEFAULTS['timeout']: # Time gives time in milliseconds
+            if time()-start_time > self.DEFAULTS['timeout']: # use  time.time() in s
                 raise Exception('Device timed out')
 
         return line.decode(self.DEFAULTS['encoding'])
