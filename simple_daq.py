@@ -5,6 +5,7 @@ from time import sleep, time
 from general_functions import current_time as time_ms # use time in ms
 
 
+
 class Device:
     DEFAULTS = {
         'read_termination': '\n',
@@ -29,7 +30,6 @@ class Device:
 
     def get_analog_value(self, channel):
         message = 'IN:CH{}'.format(channel)
-        message = 'IN:CH6'
         return int(self.query(message))
 
     def set_analog_value(self, channel, value):
@@ -59,15 +59,17 @@ class Device:
         return line.decode(self.DEFAULTS['encoding'])
 
     def query(self, message):
+		"""Writes and reads from the device"""
         self.write(message)
         return self.read()
 
     def finalize(self):
+		"""Closes the communication with the device"""
         self.rsc.close()
 
 
 if __name__ == '__main__':
-    dev = Device('/dev/cu.usbmodem1411')
+    dev = Device('COM1')
     dev.initialize()
     sleep(1)
     print(dev.idn())
