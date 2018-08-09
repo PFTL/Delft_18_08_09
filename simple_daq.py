@@ -51,11 +51,7 @@ class Device:
             line += new_char
             if new_char == line_termination:
                 break
-<<<<<<< HEAD
-            if time()-start_time > self.DEFAULTS['timeout']*1000:
-=======
             if time()-start_time > 1000*self.DEFAULTS['timeout']: # Time gives time in milliseconds
->>>>>>> 4800bde6ff8a2a5211b638eb366fcbedd6514aaa
                 raise Exception('Device timed out')
 
         return line.decode(self.DEFAULTS['encoding'])
@@ -69,7 +65,7 @@ class Device:
 
 
 if __name__ == '__main__':
-    dev = Device('/dev/ttyACM0')
+    dev = Device('COM4')
     dev.initialize()
     sleep(1)
     print(dev.idn())
